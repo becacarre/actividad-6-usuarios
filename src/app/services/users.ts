@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, switchMap, map } from 'rxjs';
+import { Observable, switchMap, throwError } from 'rxjs';
 
 import { IUser } from '../interfaces/iuser';
 import { IUserResponse } from '../interfaces/iuser-response';
@@ -19,14 +19,28 @@ export class UsersService {
   }
 
 getById(id: number): Observable<IUser> {
-  return this.getAll().pipe(
-    map(response => response.results.find(user => user.id === id)),
-    switchMap(user => {
-      if (!user?._id) {
-        throw new Error('Usuario no encontrado');
+  return this.findUserById(id);
+}
+
+private findUserById(id: number, page: number = 1): Observable<IUser> {
+  return this.getAll(page).pipe(
+    switchMap(response => {
+
+      const user = response.results.find(
+        currentUser => currentUser.id === id
+      );
+
+      if (user?._id) {
+        return this.http.get<IUser>(`${this.apiUrl}/${user._id}`);
       }
 
-      return this.http.get<IUser>(`${this.apiUrl}/${user._id}`);
+      if (page < response.total_pages) {
+        return this.findUserById(id, page + 1);
+      }
+
+      return throwError(
+        () => new Error('Usuario no encontrado')
+      );
     })
   );
 }

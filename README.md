@@ -153,3 +153,23 @@ de la aplicación con el id numérico.
 También he añadido la eliminación de usuarios tanto desde la vista de detalle
 como desde el listado. Antes de realizar la petición se muestra una confirmación
 al usuario.
+
+Como la API utilizada en la práctica es de pruebas, al crear un usuario devuelve
+una respuesta correcta, pero el nuevo registro no se guarda de forma
+permanente y por tanto no aparece después en el listado.
+
+
+### 7. Formulario de creación y actualización
+
+He utilizado el mismo componente UserForm para crear y actualizar usuarios.
+
+El formulario utiliza Reactive Forms y comprueba que todos los campos sean
+obligatorios. También valida el formato del email, evita valores formados solo
+por espacios y comprueba que la URL de la imagen empiece por http:// o https://.
+
+Cuando se accede desde /newuser el formulario aparece vacío y permite crear un
+usuario. Cuando se accede desde /updateuser/:id se cargan primero los datos del
+usuario y el mismo formulario se utiliza para modificarlos.
+
+Durante las pruebas también he adaptado la búsqueda de usuarios para recorrer
+las diferentes páginas de resultados de la API.
