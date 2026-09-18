@@ -173,3 +173,20 @@ usuario y el mismo formulario se utiliza para modificarlos.
 
 Durante las pruebas también he adaptado la búsqueda de usuarios para recorrer
 las diferentes páginas de resultados de la API.
+
+### 8. Pruebas finales
+
+Antes de finalizar la práctica he realizado varias pruebas de funcionamiento:
+
+- Carga completa del listado de usuarios.
+- Consulta del detalle de usuarios de diferentes páginas.
+- Creación de un nuevo usuario.
+- Validación de campos obligatorios, email y URL de imagen.
+- Actualización de usuarios utilizando el mismo formulario de registro.
+- Eliminación desde el listado y desde el detalle con confirmación previa.
+- Comprobación de usuarios inexistentes.
+- Redirección de rutas no existentes al Home.
+- Comprobación básica del diseño responsive.
+
+Finalmente he vuelto a compilar el proyecto para comprobar que no existían
+errores antes de preparar la entrega.
