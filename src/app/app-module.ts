@@ -7,6 +7,7 @@ import { Home } from './components/home/home';
 import { UserDetail } from './components/user-detail/user-detail';
 import { UserForm } from './components/user-form/user-form';
 import { Navbar } from './components/navbar/navbar';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { Navbar } from './components/navbar/navbar';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

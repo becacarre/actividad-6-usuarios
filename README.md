@@ -104,3 +104,22 @@ y una ruta comodín para redirigir al listado si la dirección no existe.
 
 He comprobado las rutas desde el navegador antes de continuar con la
 conexión a la API.
+
+### 4. Interfaces y servicio de usuarios
+
+He creado una interfaz IUser con los datos principales de cada usuario y
+otra interfaz IUserResponse para representar la respuesta paginada del API.
+
+También he creado UsersService, donde he centralizado las peticiones HTTP
+necesarias para consultar, crear, actualizar y eliminar usuarios.
+
+Los métodos creados son:
+
+- getAll()
+- getById()
+- create()
+- update()
+- delete()
+
+Por último he añadido HttpClientModule en AppModule para poder realizar
+las peticiones al API.
