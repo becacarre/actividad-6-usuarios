@@ -38,4 +38,30 @@ export class Home implements OnInit {
       }
     });
   }
+  deleteUser(user: IUser): void {
+  if (!user._id) {
+    return;
+  }
+
+  const confirmDelete = confirm(
+    `¿Deseas borrar al usuario ${user.first_name} ${user.last_name}?`
+  );
+
+  if (!confirmDelete) {
+    return;
+  }
+
+  this.usersService.deleteByMongoId(user._id).subscribe({
+    next: () => {
+      alert('Usuario eliminado correctamente.');
+
+      this.users = this.users.filter(
+        currentUser => currentUser._id !== user._id
+      );
+    },
+    error: () => {
+      alert('No se ha podido eliminar el usuario.');
+    }
+  });
+}
 }

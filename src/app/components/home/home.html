@@ -42,10 +42,11 @@
           </a>
 
           <button
-            type="button"
-            class="btn btn-danger btn-sm">
-            Borrar
-          </button>
+  type="button"
+  class="btn btn-danger btn-sm"
+  (click)="deleteUser(user)">
+  Borrar
+</button>
 
           <a
             [routerLink]="['/updateuser', user.id]"

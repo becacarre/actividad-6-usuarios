@@ -138,3 +138,18 @@ Home a esa estructura.
 
 Los usuarios se muestran en tarjetas con Bootstrap y con los botones de
 detalle, actualizar y borrar.
+
+
+### 6. Detalle y eliminación de usuarios
+
+He desarrollado la vista de detalle para consultar los datos de un usuario
+a partir del identificador recibido en la ruta.
+
+Durante las pruebas comprobé que para consultar y eliminar un usuario la API
+utiliza el campo _id, aunque en el listado también devuelve un id numérico.
+He adaptado el servicio para trabajar con esta respuesta manteniendo las rutas
+de la aplicación con el id numérico.
+
+También he añadido la eliminación de usuarios tanto desde la vista de detalle
+como desde el listado. Antes de realizar la petición se muestra una confirmación
+al usuario.

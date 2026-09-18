@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, map } from 'rxjs';
 
 import { IUser } from '../interfaces/iuser';
 import { IUserResponse } from '../interfaces/iuser-response';
@@ -18,9 +18,18 @@ export class UsersService {
     return this.http.get<IUserResponse>(`${this.apiUrl}?page=${page}`);
   }
 
-  getById(id: number): Observable<IUser> {
-    return this.http.get<IUser>(`${this.apiUrl}/${id}`);
-  }
+getById(id: number): Observable<IUser> {
+  return this.getAll().pipe(
+    map(response => response.results.find(user => user.id === id)),
+    switchMap(user => {
+      if (!user?._id) {
+        throw new Error('Usuario no encontrado');
+      }
+
+      return this.http.get<IUser>(`${this.apiUrl}/${user._id}`);
+    })
+  );
+}
 
   create(user: IUser): Observable<IUser> {
     return this.http.post<IUser>(this.apiUrl, user);
@@ -33,4 +42,7 @@ export class UsersService {
   delete(id: number): Observable<IUser> {
     return this.http.delete<IUser>(`${this.apiUrl}/${id}`);
   }
+  deleteByMongoId(id: string): Observable<IUser> {
+  return this.http.delete<IUser>(`${this.apiUrl}/${id}`);
+}
 }
