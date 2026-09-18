@@ -83,3 +83,24 @@ manteniendo también el archivo src/styles.css para los estilos propios.
 
 He ejecutado `ng.cmd build` para comprobar que el proyecto compilaba
 con la nueva configuración.
+
+
+### 3. Componentes y rutas
+
+He creado los componentes Home, UserDetail, UserForm y Navbar.
+
+Después he configurado las rutas principales de la aplicación:
+
+- /home
+- /user/:id
+- /newuser
+- /updateuser/:id
+
+Para la creación y actualización de usuarios se reutiliza el componente
+UserForm.
+
+También he añadido una redirección para que la ruta inicial cargue Home
+y una ruta comodín para redirigir al listado si la dirección no existe.
+
+He comprobado las rutas desde el navegador antes de continuar con la
+conexión a la API.
