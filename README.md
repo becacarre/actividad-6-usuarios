@@ -123,3 +123,18 @@ Los métodos creados son:
 
 Por último he añadido HttpClientModule en AppModule para poder realizar
 las peticiones al API.
+
+### 5. Listado de usuarios
+
+He conectado el componente Home con el servicio de usuarios para cargar los
+datos desde la API.
+
+La API devuelve el listado paginado, por lo que he ido acumulando los
+resultados de todas las páginas hasta completar el listado.
+
+Durante las pruebas comprobé que la respuesta real utilizaba la propiedad
+results para devolver los usuarios, así que adapté la interfaz y el componente
+Home a esa estructura.
+
+Los usuarios se muestran en tarjetas con Bootstrap y con los botones de
+detalle, actualizar y borrar.

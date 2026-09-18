@@ -1,3 +1,64 @@
-<h1>Listado de usuarios</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Listado de usuarios</h1>
+</div>
 
-<p>Aquí se mostrará el listado completo de usuarios.</p>
+<div *ngIf="loading" class="alert alert-info">
+  Cargando usuarios...
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
+
+<div *ngIf="!loading && !errorMessage" class="row g-4">
+
+  <div
+    *ngFor="let user of users"
+    class="col-12 col-sm-6 col-lg-4">
+
+    <div class="card h-100 shadow-sm">
+
+      <img
+        [src]="user.image"
+        class="card-img-top user-image"
+        [alt]="user.first_name + ' ' + user.last_name">
+
+      <div class="card-body">
+
+        <h5 class="card-title">
+          {{ user.first_name }} {{ user.last_name }}
+        </h5>
+
+        <p class="card-text text-muted">
+          {{ user.email }}
+        </p>
+
+        <div class="d-flex flex-wrap gap-2">
+
+          <a
+            [routerLink]="['/user', user.id]"
+            class="btn btn-primary btn-sm">
+            Ver detalle
+          </a>
+
+          <button
+            type="button"
+            class="btn btn-danger btn-sm">
+            Borrar
+          </button>
+
+          <a
+            [routerLink]="['/updateuser', user.id]"
+            class="btn btn-warning btn-sm">
+            Actualizar
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
